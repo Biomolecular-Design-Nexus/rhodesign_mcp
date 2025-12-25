@@ -1,0 +1,8 @@
+{
+  "setup_commands": [
+    "(command -v mamba >/dev/null 2>&1 && mamba create -p ./env python=3.10 pip -y) || (command -v conda >/dev/null 2>&1 && conda create -p ./env python=3.10 pip -y) || (echo \"Warning: Neither mamba nor conda found, creating venv instead\" && python3 -m venv ./env)",
+    "(command -v mamba >/dev/null 2>&1 && mamba env create -f repo/RhoDesign/environment.yml -p ./env_py39 -y) || (command -v conda >/dev/null 2>&1 && conda env create -f repo/RhoDesign/environment.yml -p ./env_py39 -y) || echo \"Warning: Could not create legacy Python 3.9 environment\"",
+    "./env/bin/pip install fastmcp loguru --force-reinstall --no-cache-dir",
+    "./env/bin/pip install --ignore-installed fastmcp"
+  ]
+}

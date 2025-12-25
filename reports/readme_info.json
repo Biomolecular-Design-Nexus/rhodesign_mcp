@@ -1,0 +1,184 @@
+{
+  "project_name": "RhoDesign",
+  "description": "AI-powered RNA sequence design from 3D structure using deep learning inverse folding",
+  "tools": [
+    {
+      "name": "predict_rna_sequence_with_ss",
+      "type": "sync",
+      "description": "Generate RNA sequence from 3D structure with secondary structure constraints",
+      "example_prompt": "Use predict_rna_sequence_with_ss with pdb_file @examples/data/2zh6_B.pdb and ss_file @examples/data/2zh6_B.npy"
+    },
+    {
+      "name": "predict_rna_sequence_no_ss",
+      "type": "sync",
+      "description": "Generate RNA sequence from 3D structure only",
+      "example_prompt": "Run predict_rna_sequence_no_ss on @examples/data/2zh6_B.pdb and save to results/output.fasta"
+    },
+    {
+      "name": "submit_rna_sequence_prediction_with_ss",
+      "type": "submit",
+      "description": "Submit RNA sequence generation with secondary structure for background processing",
+      "example_prompt": "Submit RNA sequence prediction with secondary structure for @examples/data/2zh6_B.pdb"
+    },
+    {
+      "name": "submit_rna_sequence_prediction_no_ss",
+      "type": "submit",
+      "description": "Submit RNA sequence generation without secondary structure for background processing",
+      "example_prompt": "Submit background prediction for @examples/data/2zh6_B.pdb without secondary structure"
+    },
+    {
+      "name": "submit_rna_batch_evaluation",
+      "type": "submit",
+      "description": "Submit batch processing and benchmarking for large datasets",
+      "example_prompt": "Submit batch evaluation for test directory @data/test with secondary structures @data/test_ss"
+    },
+    {
+      "name": "submit_batch_rna_prediction",
+      "type": "submit",
+      "description": "Submit batch processing for multiple structures",
+      "example_prompt": "Submit batch RNA prediction for files [@file1.pdb, @file2.pdb, @file3.pdb] with prediction_type no_ss"
+    },
+    {
+      "name": "validate_rna_structure",
+      "type": "sync",
+      "description": "Validate RNA structure file format and content",
+      "example_prompt": "Validate the structure file @examples/data/2zh6_B.pdb"
+    },
+    {
+      "name": "get_example_data",
+      "type": "sync",
+      "description": "Get information about available example datasets",
+      "example_prompt": "What example data is available?"
+    },
+    {
+      "name": "get_available_configs",
+      "type": "sync",
+      "description": "Get information about configuration files",
+      "example_prompt": "What configuration files are available?"
+    },
+    {
+      "name": "get_job_status",
+      "type": "sync",
+      "description": "Check job progress and status",
+      "example_prompt": "Check the status of job abc123"
+    },
+    {
+      "name": "get_job_result",
+      "type": "sync",
+      "description": "Get results when completed",
+      "example_prompt": "Get the results for job abc123"
+    },
+    {
+      "name": "get_job_log",
+      "type": "sync",
+      "description": "View execution logs",
+      "example_prompt": "Show the logs for job abc123"
+    },
+    {
+      "name": "cancel_job",
+      "type": "sync",
+      "description": "Cancel running job",
+      "example_prompt": "Cancel job abc123"
+    },
+    {
+      "name": "list_jobs",
+      "type": "sync",
+      "description": "List all jobs",
+      "example_prompt": "List all running jobs"
+    }
+  ],
+  "scripts": [
+    {
+      "name": "rna_structure_to_sequence_with_ss.py",
+      "description": "RNA sequence design with secondary structure constraints",
+      "example_command": "python scripts/rna_structure_to_sequence_with_ss.py --pdb examples/data/2zh6_B.pdb --ss examples/data/2zh6_B.npy --output results/with_ss.fasta"
+    },
+    {
+      "name": "rna_structure_to_sequence_no_ss.py",
+      "description": "RNA sequence design from 3D structure only",
+      "example_command": "python scripts/rna_structure_to_sequence_no_ss.py --pdb examples/data/2zh6_B.pdb --output results/no_ss.fasta"
+    },
+    {
+      "name": "rna_batch_evaluation.py",
+      "description": "Batch processing and benchmarking",
+      "example_command": "python scripts/rna_batch_evaluation.py --test_dir data/test --ss_dir data/test_ss --output results/batch.json --max_files 10"
+    }
+  ],
+  "demo_data": [
+    {
+      "file": "2zh6_B.pdb",
+      "description": "Sample RNA 3D structure (58KB)",
+      "used_by": ["predict_rna_sequence_with_ss", "predict_rna_sequence_no_ss", "rna_structure_to_sequence_with_ss.py", "rna_structure_to_sequence_no_ss.py"]
+    },
+    {
+      "file": "2zh6_B.npy",
+      "description": "Secondary structure contact map (1.3KB)",
+      "used_by": ["predict_rna_sequence_with_ss", "rna_structure_to_sequence_with_ss.py"]
+    },
+    {
+      "file": "pred_seq.fasta",
+      "description": "Example prediction output (59B)",
+      "used_by": ["reference output"]
+    }
+  ],
+  "configs": [
+    {
+      "file": "structure_to_sequence_with_ss_config.json",
+      "description": "Configuration for RNA design with secondary structure",
+      "parameters": {
+        "model": "checkpoint path and type",
+        "inference": "device, temperature, random_seed",
+        "output": "format and metadata settings"
+      }
+    },
+    {
+      "file": "structure_to_sequence_no_ss_config.json",
+      "description": "Configuration for RNA design without secondary structure",
+      "parameters": {
+        "model": "checkpoint path and type",
+        "inference": "device, temperature, random_seed",
+        "output": "format and metadata settings"
+      }
+    },
+    {
+      "file": "batch_evaluation_config.json",
+      "description": "Configuration for batch processing",
+      "parameters": {
+        "evaluation": "batch settings and file limits",
+        "model": "checkpoint configuration",
+        "output": "result formatting"
+      }
+    },
+    {
+      "file": "default_config.json",
+      "description": "Default settings for all scripts",
+      "parameters": {
+        "environment": "python version and packages",
+        "paths": "directories and file locations",
+        "model_checkpoints": "download URLs and paths",
+        "default_inference": "device and parameter defaults",
+        "validation": "input checking and warnings",
+        "logging": "output and debugging settings"
+      }
+    }
+  ],
+  "installation": {
+    "package_manager": "mamba (preferred) or conda",
+    "environments": {
+      "mcp": "Python 3.10 for MCP server",
+      "legacy": "Python 3.9 for RhoDesign models"
+    },
+    "requirements": [
+      "8GB+ RAM",
+      "~5GB storage",
+      "CUDA 11.3+ (optional)",
+      "Model checkpoints from Google Drive"
+    ]
+  },
+  "performance": {
+    "single_structure": "30 seconds - 2 minutes",
+    "gpu_acceleration": "5-10x faster than CPU",
+    "memory_per_job": "~2GB",
+    "sequence_recovery": "60-90% on benchmarks"
+  }
+}

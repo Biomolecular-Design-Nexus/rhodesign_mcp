@@ -1,0 +1,65 @@
+{
+  "_description": "Configuration for RNA batch evaluation and benchmarking",
+  "_source": "Extracted from examples/use_case_3_batch_evaluation.py",
+
+  "model": {
+    "checkpoint": "checkpoint/ss_apexp_best.pth",
+    "type": "with_secondary_structure",
+    "args": {
+      "encoder_layers": 8,
+      "encoder_attention_heads": 8,
+      "encoder_embed_dim": 512,
+      "encoder_ffn_embed_dim": 2048,
+      "activation_fn": "gelu",
+      "dropout": 0.1,
+      "attention_dropout": 0.1,
+      "activation_dropout": 0.0,
+      "max_positions": 1024
+    }
+  },
+
+  "inference": {
+    "device": -1,
+    "temperature": 1.0,
+    "random_seed": 1,
+    "max_sequence_length": 1000
+  },
+
+  "batch_processing": {
+    "max_files": null,
+    "file_extensions": [".pdb"],
+    "parallel_processing": false,
+    "progress_bar": true
+  },
+
+  "input": {
+    "test_dir": "data/test",
+    "ss_dir": "data/test_ss",
+    "required_formats": ["pdb", "npy"]
+  },
+
+  "output": {
+    "format": "json",
+    "save_individual_results": true,
+    "compute_statistics": true,
+    "include_metadata": true
+  },
+
+  "statistics": {
+    "compute_recovery_stats": true,
+    "compute_length_stats": true,
+    "compute_timing_stats": true,
+    "percentiles": [25, 50, 75, 90, 95]
+  },
+
+  "alphabet": {
+    "tokens": ["A", "G", "C", "U", "X"],
+    "special_tokens": {
+      "pad": "<pad>",
+      "cls": "<cls>",
+      "mask": "<mask>",
+      "unk": "<unk>",
+      "eos": "<eos>"
+    }
+  }
+}

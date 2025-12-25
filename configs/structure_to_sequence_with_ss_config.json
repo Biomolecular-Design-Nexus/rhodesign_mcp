@@ -1,0 +1,51 @@
+{
+  "_description": "Configuration for RNA structure-to-sequence design with secondary structure",
+  "_source": "Extracted from examples/use_case_1_structure_to_sequence_with_ss.py",
+
+  "model": {
+    "checkpoint": "checkpoint/ss_apexp_best.pth",
+    "type": "with_secondary_structure",
+    "args": {
+      "encoder_layers": 8,
+      "encoder_attention_heads": 8,
+      "encoder_embed_dim": 512,
+      "encoder_ffn_embed_dim": 2048,
+      "activation_fn": "gelu",
+      "dropout": 0.1,
+      "attention_dropout": 0.1,
+      "activation_dropout": 0.0,
+      "max_positions": 1024
+    }
+  },
+
+  "inference": {
+    "device": -1,
+    "temperature": 1.0,
+    "random_seed": 1,
+    "max_sequence_length": 1000
+  },
+
+  "input": {
+    "pdb_file": "examples/data/2zh6_B.pdb",
+    "ss_file": "examples/data/2zh6_B.npy",
+    "required_formats": ["pdb", "npy"]
+  },
+
+  "output": {
+    "format": "fasta",
+    "include_metadata": true,
+    "save_recovery_rate": true,
+    "default_header_template": "RhoDesign_prediction_with_SS_recovery_{recovery_rate:.3f}"
+  },
+
+  "alphabet": {
+    "tokens": ["A", "G", "C", "U", "X"],
+    "special_tokens": {
+      "pad": "<pad>",
+      "cls": "<cls>",
+      "mask": "<mask>",
+      "unk": "<unk>",
+      "eos": "<eos>"
+    }
+  }
+}

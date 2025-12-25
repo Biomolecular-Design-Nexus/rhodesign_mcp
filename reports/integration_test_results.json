@@ -1,0 +1,182 @@
+{
+  "test_date": "2025-12-24T18:08:39.195873",
+  "tests": {
+    "get_example_data": {
+      "status": "passed",
+      "timestamp": "2025-12-24T18:08:39.196018",
+      "result": {
+        "status": "success",
+        "examples_directory": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/examples/data",
+        "files": [
+          {
+            "name": "2zh6_B.npy",
+            "path": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/examples/data/2zh6_B.npy",
+            "size": 1284,
+            "type": ".npy"
+          },
+          {
+            "name": "2zh6_B.pdb",
+            "path": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/examples/data/2zh6_B.pdb",
+            "size": 58563,
+            "type": ".pdb"
+          },
+          {
+            "name": "pred_seq.fasta",
+            "path": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/examples/data/pred_seq.fasta",
+            "size": 59,
+            "type": ".fasta"
+          }
+        ],
+        "total_files": 3
+      },
+      "error": null
+    },
+    "get_available_configs": {
+      "status": "passed",
+      "timestamp": "2025-12-24T18:08:39.196398",
+      "result": {
+        "status": "success",
+        "configs_directory": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/configs",
+        "configurations": [
+          {
+            "name": "batch_evaluation_config.json",
+            "path": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/configs/batch_evaluation_config.json",
+            "description": "No description",
+            "model_type": "with_secondary_structure"
+          },
+          {
+            "name": "structure_to_sequence_no_ss_config.json",
+            "path": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/configs/structure_to_sequence_no_ss_config.json",
+            "description": "No description",
+            "model_type": "no_secondary_structure"
+          },
+          {
+            "name": "structure_to_sequence_with_ss_config.json",
+            "path": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/configs/structure_to_sequence_with_ss_config.json",
+            "description": "No description",
+            "model_type": "with_secondary_structure"
+          },
+          {
+            "name": "default_config.json",
+            "path": "/home/xux/Desktop/NucleicMCP/NucleicMCP/tool-mcps/rhodesign_mcp/configs/default_config.json",
+            "description": "No description",
+            "model_type": "unknown"
+          }
+        ],
+        "total_configs": 4
+      },
+      "error": null
+    },
+    "validate_rna_structure_valid": {
+      "status": "failed",
+      "timestamp": "2025-12-24T18:08:39.265147",
+      "result": {
+        "status": "error",
+        "error": "Failed to import RhoDesign modules: No module named 'biotite'. Please ensure the env_py39 environment is activated and all dependencies are installed.",
+        "valid": false
+      },
+      "error": "Failed to import RhoDesign modules: No module named 'biotite'. Please ensure the env_py39 environment is activated and all dependencies are installed."
+    },
+    "validate_rna_structure_invalid": {
+      "status": "passed",
+      "timestamp": "2025-12-24T18:08:39.265207",
+      "result": {
+        "status": "error",
+        "error": "PDB file not found: /nonexistent/file.pdb",
+        "valid": false
+      },
+      "error": null
+    },
+    "predict_rna_sequence_with_ss": {
+      "status": "failed",
+      "timestamp": "2025-12-24T18:08:39.268243",
+      "result": {
+        "status": "error",
+        "error": "Failed to import script: No module named 'torch'",
+        "suggestion": "Ensure the scripts are properly set up and environment is activated"
+      },
+      "error": "Failed to import script: No module named 'torch'"
+    },
+    "predict_rna_sequence_no_ss": {
+      "status": "failed",
+      "timestamp": "2025-12-24T18:08:39.270676",
+      "result": {
+        "status": "error",
+        "error": "Failed to import script: No module named 'torch'",
+        "suggestion": "Ensure the scripts are properly set up and environment is activated"
+      },
+      "error": "Failed to import script: No module named 'torch'"
+    },
+    "list_jobs": {
+      "status": "passed",
+      "timestamp": "2025-12-24T18:08:39.270752",
+      "result": {
+        "status": "success",
+        "jobs": [],
+        "total": 0
+      },
+      "error": null
+    },
+    "submit_rna_sequence_prediction_with_ss": {
+      "status": "passed",
+      "timestamp": "2025-12-24T18:08:39.271366",
+      "result": {
+        "status": "submitted",
+        "job_id": "a7e4955e",
+        "message": "Job submitted. Use get_job_status('a7e4955e') to check progress."
+      },
+      "error": null
+    },
+    "get_job_status": {
+      "status": "passed",
+      "timestamp": "2025-12-24T18:08:40.272955",
+      "result": {
+        "job_id": "a7e4955e",
+        "job_name": "test_submit_with_ss",
+        "status": "failed",
+        "submitted_at": "2025-12-24T18:08:39.270891",
+        "started_at": "2025-12-24T18:08:39.271519",
+        "completed_at": "2025-12-24T18:08:39.271993",
+        "error": "local variable 'script_path' referenced before assignment"
+      },
+      "error": null
+    },
+    "cancel_job": {
+      "status": "passed",
+      "timestamp": "2025-12-24T18:08:40.273116",
+      "result": {
+        "status": "error",
+        "error": "Job a7e4955e already failed"
+      },
+      "error": null
+    },
+    "get_job_status_invalid": {
+      "status": "passed",
+      "timestamp": "2025-12-24T18:08:40.273163",
+      "result": {
+        "status": "error",
+        "error": "Job invalid_job_id not found"
+      },
+      "error": null
+    },
+    "predict_with_invalid_file": {
+      "status": "passed",
+      "timestamp": "2025-12-24T18:08:40.273712",
+      "result": {
+        "status": "error",
+        "error": "Failed to import script: No module named 'torch'",
+        "suggestion": "Ensure the scripts are properly set up and environment is activated"
+      },
+      "error": null
+    }
+  },
+  "issues": [],
+  "summary": {
+    "total_tests": 12,
+    "passed": 9,
+    "failed": 3,
+    "errors": 0,
+    "skipped": 0,
+    "pass_rate": "75.0%"
+  }
+}
